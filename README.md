@@ -6,30 +6,21 @@ An offline-first, client-side React Single Page Application (SPA) designed to in
 
 ## Developer Quick Start
 
-### Prerequisites
-* [pnpm](https://pnpm.io/)
-* [Docker](https://www.docker.com/) (for running the local Radicale test server)
+This project runs entirely inside Docker. You only need Docker Desktop installed on your host system.
 
-### 1. Spin up Local Radicale CalDAV Server
+### 1. Start Dev Environment
+From the project root directory, run:
 ```bash
-docker compose -f docker/docker-compose.yml up -d
-```
-Access the Radicale server UI at `http://localhost:5232`.
-
-### 2. Install Dependencies
-```bash
-pnpm install
+docker compose up -d
 ```
 
-### 3. Run Development Server
-```bash
-pnpm dev
-```
-Open `http://localhost:5173` in your browser.
+This starts:
+* **React App**: `http://localhost:5173` (with hot reloading enabled)
+* **Radicale CalDAV Server**: `http://localhost:5232` (mock server for development)
 
-### 4. Run Tests
+### 2. Run Tests inside Container
 ```bash
-pnpm test
+docker compose exec app pnpm test
 ```
 
 ---
@@ -37,8 +28,3 @@ pnpm test
 ## Architectural Layout
 * See [architecture.md](file:///c:/Users/me/Nextcloud2/Documents/personal-calendar/architecture.md) for technical decisions.
 * See [instructions.md](file:///c:/Users/me/Nextcloud2/Documents/personal-calendar/instructions.md) for rules, conventions, and constraints.
-
----
-
-> this code base is my experiment to see how far i can get with just AI-agents acting as a junior
-> developer.
