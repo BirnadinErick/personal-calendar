@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Calendar, CheckSquare, Settings, Wifi, WifiOff, RefreshCw } from 'lucide-react';
+import { useStore } from './store/useStore';
+import MiniCalendar from './components/MiniCalendar';
+import CalendarMonthView from './components/CalendarMonthView';
 
 export default function App() {
-  const [isOnline, setIsOnline] = useState<boolean>(navigator.onLine);
-  const [activeTab, setActiveTab] = useState<'calendar' | 'todos'>('calendar');
+  const { isOnline, activeTab, setIsOnline, setActiveTab } = useStore();
 
   // Triggered when network status changes
   React.useEffect(() => {
@@ -15,7 +17,7 @@ export default function App() {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, []);
+  }, [setIsOnline]);
 
   return (
     <div className="flex h-screen bg-slate-950 text-slate-100 font-sans overflow-hidden">
@@ -33,7 +35,7 @@ export default function App() {
           </div>
 
           {/* Navigation Links */}
-          <nav className="space-y-1">
+          <nav className="space-y-1 mb-6">
             <button
               onClick={() => setActiveTab('calendar')}
               className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 ${
@@ -57,6 +59,16 @@ export default function App() {
               <span>Tasks & Todos</span>
             </button>
           </nav>
+
+          {/* Mini Calendar widget */}
+          {activeTab === 'calendar' && (
+            <div className="px-1 border-t border-slate-800/50 pt-6">
+              <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase block mb-3 px-2">
+                Mini Calendar
+              </span>
+              <MiniCalendar />
+            </div>
+          )}
         </div>
 
         {/* Sync & Connection Status */}
@@ -99,18 +111,22 @@ export default function App() {
         </header>
 
         {/* View Layouts */}
-        <div className="flex-1 bg-slate-900/40 border border-slate-900 rounded-2xl p-6 backdrop-blur-md shadow-2xl relative overflow-hidden flex items-center justify-center">
-          <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 via-purple-500/0 to-transparent pointer-events-none" />
-          <div className="text-center">
-            <p className="text-slate-400 text-sm mb-2">Workspace initialized successfully.</p>
-            <h2 className="text-lg font-semibold text-slate-200">
-              Welcome to the personal-calendar skeleton!
-            </h2>
-            <p className="text-slate-500 text-xs mt-4">
-              Edit <code className="text-indigo-400 bg-indigo-500/10 px-1 py-0.5 rounded">src/App.tsx</code> to begin.
-            </p>
+        {activeTab === 'calendar' ? (
+          <CalendarMonthView />
+        ) : (
+          <div className="flex-1 bg-slate-900/40 border border-slate-900 rounded-2xl p-6 backdrop-blur-md shadow-2xl relative overflow-hidden flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 via-purple-500/0 to-transparent pointer-events-none" />
+            <div className="text-center">
+              <CheckSquare size={48} className="text-slate-600 mx-auto mb-4" />
+              <h2 className="text-lg font-semibold text-slate-200">
+                Tasks & Todos
+              </h2>
+              <p className="text-slate-500 text-xs mt-2">
+                Task management and CalDAV sync functionality is available.
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );
