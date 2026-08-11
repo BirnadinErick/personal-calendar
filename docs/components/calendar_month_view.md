@@ -8,9 +8,9 @@ This document details the newly added calendar components, their design rational
 
 The calendar system is split into three main components to ensure separation of concerns, high performance, and ease of future maintenance:
 
-1. **`CalendarMonthView`** ([`CalendarMonthView.tsx`](file:///C:/Users/me/.gemini/antigravity/worktrees/personal-calendar/implement_calendar_month_view/src/components/CalendarMonthView.tsx)): The main calendar area. Displays the month grid, controls, active filters, and search bar.
-2. **`MiniCalendar`** ([`MiniCalendar.tsx`](file:///C:/Users/me/.gemini/antigravity/worktrees/personal-calendar/implement_calendar_month_view/src/components/MiniCalendar.tsx)): A compact navigation calendar rendered in the sidebar. Used for quick selection of dates and synchronizing the viewed month.
-3. **`AddEventModal`** ([`AddEventModal.tsx`](file:///C:/Users/me/.gemini/antigravity/worktrees/personal-calendar/implement_calendar_month_view/src/components/AddEventModal.tsx)): A dialog form for creating, editing, and deleting events from the local database.
+1. **`CalendarMonthView`** ([`CalendarMonthView.tsx`](../../src/components/CalendarMonthView.tsx)): The main calendar area. Displays the month grid, controls, active filters, and search bar.
+2. **`MiniCalendar`** ([`MiniCalendar.tsx`](../../src/components/MiniCalendar.tsx)): A compact navigation calendar rendered in the sidebar. Used for quick selection of dates and synchronizing the viewed month.
+3. **`AddEventModal`** ([`AddEventModal.tsx`](../../src/components/AddEventModal.tsx)): A dialog form for creating, editing, and deleting events from the local database.
 
 ---
 

@@ -35,3 +35,11 @@ If you are an agent or a developer adding new features:
 
 2. **Offline-First Storage**:
    - Refer to `architecture.md` to see how the sync engine interacts with Dexie.js (IndexedDB). Always write database actions through Dexie tables.
+
+---
+
+## Documentation Guidelines
+
+When creating or modifying documentation files in this directory:
+- **Use Relative Links Only**: Do **not** use absolute `file://` links (e.g., `file:///C:/...`). Always use relative paths from the current file's directory (e.g., `../../src/App.tsx`). This ensures links remain functional across different machines, worktrees, and code browsing platforms.
+

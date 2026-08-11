@@ -1,6 +1,6 @@
 # Store Documentation - AppState Zustand Store
 
-This document explains the store extensions made in [`useStore.ts`](file:///C:/Users/me/.gemini/antigravity/worktrees/personal-calendar/implement_calendar_month_view/src/store/useStore.ts) to support the Calendar Month View and Mini Calendar feature.
+This document explains the store extensions made in [`useStore.ts`](../../src/store/useStore.ts) to support the Calendar Month View and Mini Calendar feature.
 
 ---
 
