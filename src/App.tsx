@@ -1,3 +1,7 @@
+import React from 'react';
+import { useStore } from './store/useStore';
+import MiniCalendar from './components/MiniCalendar';
+import CalendarMonthView from './components/CalendarMonthView';
 import { useEffect } from 'react';
 import { useStore } from './store/useStore';
 import { applyTheme, ACCENT_COLORS } from './theme';
@@ -82,7 +86,7 @@ export default function App() {
           </div>
 
           {/* Navigation Links */}
-          <nav className="space-y-1">
+          <nav className="space-y-1 mb-6">
             <button
               onClick={() => setActiveTab('calendar')}
               className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 cursor-pointer ${
@@ -106,6 +110,16 @@ export default function App() {
               <span>Tasks & Todos</span>
             </button>
           </nav>
+
+          {/* Mini Calendar widget */}
+          {activeTab === 'calendar' && (
+            <div className="px-1 border-t border-slate-800/50 pt-6">
+              <span className="text-[10px] font-bold text-slate-500 tracking-wider uppercase block mb-3 px-2">
+                Mini Calendar
+              </span>
+              <MiniCalendar />
+            </div>
+          )}
         </div>
 
         {/* Sync & Connection Status */}
@@ -155,6 +169,22 @@ export default function App() {
         </header>
 
         {/* View Layouts */}
+        {activeTab === 'calendar' ? (
+          <CalendarMonthView />
+        ) : (
+          <div className="flex-1 bg-slate-900/40 border border-slate-900 rounded-2xl p-6 backdrop-blur-md shadow-2xl relative overflow-hidden flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-500/5 via-purple-500/0 to-transparent pointer-events-none" />
+            <div className="text-center">
+              <CheckSquare size={48} className="text-slate-600 mx-auto mb-4" />
+              <h2 className="text-lg font-semibold text-slate-200">
+                Tasks & Todos
+              </h2>
+              <p className="text-slate-500 text-xs mt-2">
+                Task management and CalDAV sync functionality is available.
+              </p>
+            </div>
+          </div>
+        )}
         <div className="flex-1 bg-bg-card border border-border-subtle rounded-2xl p-6 shadow-xs relative overflow-hidden transition-colors duration-200">
           {activeTab === 'settings' ? (
             /* Settings View */
